@@ -44,16 +44,44 @@ const cuteNames = {
     ]
 };
 
+// Prefix and Suffix list for mixing
+const prefixes = [
+    "Sugar", "Fuzzy", "Moon", "Star", "Cuddle", "Mochi", "Dream", "Fluffy", "Glitter", "Panda"
+];
+const suffixes = [
+    "Bunny", "Paws", "Tail", "Whiskers", "Pop", "Sprout", "Berry", "Mew", "Shine", "Mochi"
+];
+
 // Function to get a random element from an array
 function getRandomElement(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
 
 // Function to generate a cute username based on a selected category
-function generateCuteName(theme) {
-    if (cuteNames[theme]) {
-        return getRandomElement(cuteNames[theme]);
-    } else {
-        return "Invalid category. Please choose a valid theme.";
+function generateCuteName(theme, cleanOnly = false) {
+    let baseName = cleanOnly ? getRandomElement(cuteNames[theme]) : getRandomElement(cuteNames[theme]);
+
+    // Generate prefix and suffix only if not clean
+    if (!cleanOnly) {
+        const includePrefix = document.querySelector('#prefix-checkbox').checked;
+        const includeSuffix = document.querySelector('#suffix-checkbox').checked;
+
+        if (includePrefix) {
+            baseName = getRandomElement(prefixes) + baseName;
+        }
+        if (includeSuffix) {
+            baseName += getRandomElement(suffixes);
+        }
     }
+
+    return baseName;
 }
+
+// Event listener for generating username
+document.querySelector('#generate-btn').addEventListener('click', () => {
+    const theme = document.querySelector('#category-select').value;
+    const cleanOnly = document.querySelector('#clean-checkbox').checked; // New checkbox for clean names
+    const generatedName = generateCuteName(theme, cleanOnly);
+    
+    document.querySelector('#result').textContent = generatedName;
+});
