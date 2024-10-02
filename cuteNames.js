@@ -63,9 +63,29 @@ const suffixes = [
     "Bunny", "Paws", "Tail", "Whiskers", "Pop", "Sprout", "Berry", "Mew", "Shine", "Mochi"
 ];
 
-// Function to get a random element from an array
+// Recently generated names history to avoid repetitions
+const recentNames = new Set();
+const MAX_HISTORY = 5;  // Maximum recent names to remember
+
+// Function to get a random element from an array, excluding recent names
 function getRandomElement(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
+    let filteredArr = arr.filter(name => !recentNames.has(name));
+    
+    // If filtered array is empty, reset the recent names
+    if (filteredArr.length === 0) {
+        recentNames.clear();
+        filteredArr = arr;
+    }
+
+    const randomElement = filteredArr[Math.floor(Math.random() * filteredArr.length)];
+    
+    // Add the new name to the recent names and ensure we don't exceed max history
+    recentNames.add(randomElement);
+    if (recentNames.size > MAX_HISTORY) {
+        recentNames.delete([...recentNames][0]);  // Remove the oldest entry
+    }
+    
+    return randomElement;
 }
 
 // Function to generate a cute username based on a selected category
