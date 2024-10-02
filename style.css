@@ -28,7 +28,7 @@ label {
     margin-bottom: 10px;
 }
 
-select, input[type="checkbox"] {
+select {
     font-size: 16px;
     padding: 8px 12px;
     border: 2px solid #ff6b81;
@@ -38,16 +38,18 @@ select, input[type="checkbox"] {
     margin: 10px;
     cursor: pointer;
     transition: border-color 0.3s ease;
+    appearance: none; /* Remove default styling */
 }
 
-select:focus, input[type="checkbox"]:focus {
+select:focus {
     border-color: #ff9aa2;
     outline: none;
 }
 
-option {
-    background-color: #ff6b81; /* Change background of dropdown options */
-    color: #fff; /* Ensure option text is visible */
+/* Specific styling for options to ensure color and background are consistent */
+select option {
+    background-color: #ff6b81; /* Background color for options */
+    color: #fff; /* Text color for options */
 }
 
 /* Button Styling */
