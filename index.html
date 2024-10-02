@@ -34,9 +34,21 @@
 
     <button id="generate-btn">Generate Cute Username</button>
 
-    <div id="result"></div>
+    <!-- This is the clickable div where the generated username will appear -->
+    <div id="result" title="Click to copy!"></div>
 
     <!-- Link to your cuteNames.js file -->
     <script src="cuteNames.js"></script>
+    <script>
+        // Adding event listener to copy the username when clicked
+        document.getElementById('result').addEventListener('click', function () {
+            const username = document.getElementById('result').textContent;
+            if (username) {
+                navigator.clipboard.writeText(username).then(() => {
+                    alert('Username copied to clipboard: ' + username);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
