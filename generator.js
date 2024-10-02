@@ -1,37 +1,50 @@
 // Function to generate a name with optional prefix, suffix, and numbers
 function generateName(theme) {
-    let baseName = generateCuteName(theme);
+    // Get the base cute name from the selected theme
+    let baseName = generateCuteName(theme);  // Using generateCuteName from cuteNames.js
 
+    // Get checkbox states
     const includePrefix = document.querySelector('#prefix-checkbox').checked;
     const includeSuffix = document.querySelector('#suffix-checkbox').checked;
     const includeNumber = document.querySelector('#number-checkbox').checked;
 
+    // Example random prefixes and suffixes that make sense
+    const prefixes = ["Sweet", "Fluffy", "Tiny", "Kawaii", "Lovely"];
+    const suffixes = ["Chan", "Mochi", "Mew", "Star", "Bunny"];
+
+    // Build the username
     let username = baseName;
 
-    // Example random prefixes and suffixes
-    const prefixes = ["Super", "Mega", "Ultra", "Hyper", "Cute"];
-    const suffixes = ["123", "Mew", "Chan", "Neko", "X"];
-
-    // Prefix and Suffix Logic
+    // Add prefix if selected
     if (includePrefix) {
-        username = getRandomElement(prefixes) + username;
+        const randomPrefix = getRandomElement(prefixes);
+        username = randomPrefix + username;  // Add the prefix before the base name
     }
+
+    // Add suffix if selected
     if (includeSuffix) {
-        username += getRandomElement(suffixes);
+        const randomSuffix = getRandomElement(suffixes);
+        username += randomSuffix;  // Add the suffix after the base name
     }
+
+    // Add random number if selected
     if (includeNumber) {
-        username += Math.floor(Math.random() * 100);  // Append a random number
+        const randomNumber = Math.floor(Math.random() * 100);  // Append a random number (0-99)
+        username += randomNumber;
     }
 
     return username;
 }
 
-// Event listener for generating username
+// Event listener for generating the username
 document.querySelector('#generate-btn').addEventListener('click', () => {
+    // Get the selected theme from the dropdown
     const theme = document.querySelector('#category-select').value;
+
+    // Generate the name using the selected theme and options
     const generatedName = generateName(theme);
     
-    // Fallback check: If name is generated, display it; otherwise show error message
+    // Display the generated name or show an error message if something goes wrong
     if (generatedName) {
         document.querySelector('#result').textContent = generatedName;
     } else {
