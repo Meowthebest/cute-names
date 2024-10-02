@@ -22,7 +22,7 @@ h1 {
 /* Labels and Select Styles */
 label {
     font-size: 18px;
-    color: #333;
+    color: #fff;
     font-weight: 500;
     display: block;
     margin-bottom: 10px;
@@ -33,8 +33,8 @@ select, input[type="checkbox"] {
     padding: 8px 12px;
     border: 2px solid #ff6b81;
     border-radius: 8px;
-    background-color: #fff;
-    color: #333;
+    background-color: #ff6b81;
+    color: #fff; /* Change text color inside the dropdown */
     margin: 10px;
     cursor: pointer;
     transition: border-color 0.3s ease;
@@ -43,6 +43,11 @@ select, input[type="checkbox"] {
 select:focus, input[type="checkbox"]:focus {
     border-color: #ff9aa2;
     outline: none;
+}
+
+option {
+    background-color: #ff6b81; /* Change background of dropdown options */
+    color: #fff; /* Ensure option text is visible */
 }
 
 /* Button Styling */
@@ -107,7 +112,7 @@ body::before {
 .checkbox-label {
     margin: 0 10px;
     font-size: 16px;
-    color: #333;
+    color: #fff;
 }
 
 input[type="checkbox"] {
