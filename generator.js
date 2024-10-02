@@ -62,5 +62,11 @@ function generateRandomSyllables() {
 document.querySelector('#generate-btn').addEventListener('click', () => {
     const theme = document.querySelector('#category-select').value;
     const generatedName = generateName(theme);
-    document.querySelector('#result').textContent = generatedName;
+    
+    // Fallback check: If name is generated, display it; otherwise show error message
+    if (generatedName) {
+        document.querySelector('#result').textContent = generatedName;
+    } else {
+        document.querySelector('#result').textContent = "Error generating name. Please try again.";
+    }
 });
