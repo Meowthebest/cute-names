@@ -42,28 +42,20 @@ const cuteNames = {
         "SleepyPuff", "MilkTeaMochi", "CottonCandyKiss", "MochiMoon", "JellyBeanGiggles", 
         "ButtonBunny", "CinnamonCloud", "DreamyBubbles", "SparkleHoney", "TwinkleBerry"
     ],
-    // Expanded clean names category
     clean: [
-        // Extracted from fruit
         "Berry", "Cherry", "Kiwi", "Peach", "Lemon", "Blueberry", "Grape", "Melon", "Citrus", "Mango",
         "Strawberry", "Watermelon", "Pineapple", "Apple", "Pear", "Plum", "Lychee", "Orange", "Coconut", "Banana",
-        // Extracted from cat
         "Kitty", "Whiskers", "Snow", "Cuddle", "Fluffy", "Neko", "Meow", "Whisker", "Moonlight", "Tail",
-        // Extracted from anime
         "Sakura", "Kawaii", "Mochi", "Heart", "Dreamer", "Star", "Senpai", "Yume", "Kitsune", "Amai",
-        // Extracted from League of Legends
         "Lux", "Ahri", "Jinx", "Ezreal", "Yasuo", "Riven", "Katarina", "Poppy", "Zoe", "MissFortune",
-        // Extracted from Genshin Impact
         "Venti", "Klee", "Diluc", "Childe", "Lumine", "Xiao", "Jean", "Ganyu", "Keqing", "Noelle",
-        // Extracted from Sanrio
         "HelloKitty", "MyMelody", "Cinnamoroll", "Pompompurin", "Kuromi", "Keroppi", "LittleTwinStars",
-        // Miscellaneous
         "Bubble", "Cupcake", "Sugar", "Starry", "Glitter", "Marshmallow", "Rainbow", "Fairy", "Bunny",
         "Sleepy", "Milk", "Cotton", "Jelly", "Button", "Cinnamon", "Dreamy", "Sparkle"
     ]
 };
 
-// Prefix and Suffix list for mixing (kept the same)
+// Prefix and Suffix list for mixing
 const prefixes = [
     "Sugar", "Fuzzy", "Moon", "Star", "Cuddle", "Mochi", "Dream", "Fluffy", "Glitter", "Panda"
 ];
