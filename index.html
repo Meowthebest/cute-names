@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cute Username Generator</title>
     <!-- Link to the external style.css file -->
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Cute Username Generator</h1>
@@ -34,21 +34,9 @@
 
     <button id="generate-btn">Generate Cute Username</button>
 
-    <!-- This is the clickable div where the generated username will appear -->
-    <div id="result" title="Click to copy!"></div>
+    <div id="result"></div>
 
     <!-- Link to your cuteNames.js file -->
     <script src="cuteNames.js"></script>
-    <script>
-        // Adding event listener to copy the username when clicked
-        document.getElementById('result').addEventListener('click', function () {
-            const username = document.getElementById('result').textContent;
-            if (username) {
-                navigator.clipboard.writeText(username).then(() => {
-                    alert('Username copied to clipboard: ' + username);
-                });
-            }
-        });
-    </script>
 </body>
 </html>
