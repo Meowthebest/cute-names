@@ -41,10 +41,29 @@ const cuteNames = {
         "CandyFlossCloud", "MarshmallowMew", "RainbowSprinkle", "FairyTaleWish", "BunnyHopStar", 
         "SleepyPuff", "MilkTeaMochi", "CottonCandyKiss", "MochiMoon", "JellyBeanGiggles", 
         "ButtonBunny", "CinnamonCloud", "DreamyBubbles", "SparkleHoney", "TwinkleBerry"
+    ],
+    // Expanded clean names category
+    clean: [
+        // Extracted from fruit
+        "Berry", "Cherry", "Kiwi", "Peach", "Lemon", "Blueberry", "Grape", "Melon", "Citrus", "Mango",
+        "Strawberry", "Watermelon", "Pineapple", "Apple", "Pear", "Plum", "Lychee", "Orange", "Coconut", "Banana",
+        // Extracted from cat
+        "Kitty", "Whiskers", "Snow", "Cuddle", "Fluffy", "Neko", "Meow", "Whisker", "Moonlight", "Tail",
+        // Extracted from anime
+        "Sakura", "Kawaii", "Mochi", "Heart", "Dreamer", "Star", "Senpai", "Yume", "Kitsune", "Amai",
+        // Extracted from League of Legends
+        "Lux", "Ahri", "Jinx", "Ezreal", "Yasuo", "Riven", "Katarina", "Poppy", "Zoe", "MissFortune",
+        // Extracted from Genshin Impact
+        "Venti", "Klee", "Diluc", "Childe", "Lumine", "Xiao", "Jean", "Ganyu", "Keqing", "Noelle",
+        // Extracted from Sanrio
+        "HelloKitty", "MyMelody", "Cinnamoroll", "Pompompurin", "Kuromi", "Keroppi", "LittleTwinStars",
+        // Miscellaneous
+        "Bubble", "Cupcake", "Sugar", "Starry", "Glitter", "Marshmallow", "Rainbow", "Fairy", "Bunny",
+        "Sleepy", "Milk", "Cotton", "Jelly", "Button", "Cinnamon", "Dreamy", "Sparkle"
     ]
 };
 
-// Prefix and Suffix list for mixing
+// Prefix and Suffix list for mixing (kept the same)
 const prefixes = [
     "Sugar", "Fuzzy", "Moon", "Star", "Cuddle", "Mochi", "Dream", "Fluffy", "Glitter", "Panda"
 ];
@@ -59,10 +78,10 @@ function getRandomElement(arr) {
 
 // Function to generate a cute username based on a selected category
 function generateCuteName(theme, cleanOnly = false) {
-    let baseName = cleanOnly ? getRandomElement(cuteNames[theme]) : getRandomElement(cuteNames[theme]);
+    let baseName = getRandomElement(cuteNames[theme]);
 
     // Generate prefix and suffix only if not clean
-    if (!cleanOnly) {
+    if (!cleanOnly && theme !== 'clean') {
         const includePrefix = document.querySelector('#prefix-checkbox').checked;
         const includeSuffix = document.querySelector('#suffix-checkbox').checked;
 
@@ -80,7 +99,7 @@ function generateCuteName(theme, cleanOnly = false) {
 // Event listener for generating username
 document.querySelector('#generate-btn').addEventListener('click', () => {
     const theme = document.querySelector('#category-select').value;
-    const cleanOnly = document.querySelector('#clean-checkbox').checked; // New checkbox for clean names
+    const cleanOnly = theme === 'clean'; // Automatically set clean if clean theme is chosen
     const generatedName = generateCuteName(theme, cleanOnly);
     
     document.querySelector('#result').textContent = generatedName;
