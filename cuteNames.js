@@ -1,4 +1,4 @@
-// List of cute names categorized by theme
+// List of cute names categorized by theme (same as before)
 const cuteNames = {
     fruit: [
         "BerryBoo", "CherryPop", "KiwiMew", "PeachyKiss", "LemonPie", "BlueberryBabe", 
@@ -108,6 +108,17 @@ function generateCuteName(theme, cleanOnly = false) {
     return baseName;
 }
 
+// Function to copy the generated name to the clipboard
+function copyToClipboard(text) {
+    const tempInput = document.createElement("input");
+    tempInput.value = text;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+    alert(`Copied: ${text}`);
+}
+
 // Event listener for generating username
 document.querySelector('#generate-btn').addEventListener('click', () => {
     const theme = document.querySelector('#category-select').value;
@@ -115,4 +126,12 @@ document.querySelector('#generate-btn').addEventListener('click', () => {
     const generatedName = generateCuteName(theme, cleanOnly);
     
     document.querySelector('#result').textContent = generatedName;
+});
+
+// Event listener for copying the generated username when clicked
+document.querySelector('#result').addEventListener('click', function() {
+    const generatedName = document.querySelector('#result').textContent;
+    if (generatedName) {
+        copyToClipboard(generatedName);
+    }
 });
