@@ -1,123 +1,43 @@
-/* General Styles */
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f8f9fa;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cute Username Generator</title>
+    <style>
+        /* Your modern and cute CSS here */
+    </style>
+</head>
+<body>
+    <h1>Cute Username Generator</h1>
+    
+    <label for="category-select">Choose a category:</label>
+    <select id="category-select">
+        <option value="fruit">Fruit</option>
+        <option value="cat">Cat</option>
+        <option value="anime">Anime</option>
+        <option value="league">League of Legends</option>
+        <option value="genshin">Genshin</option>
+        <option value="sanrio">Sanrio</option>
+        <option value="miscellaneous">Miscellaneous</option>
+        <option value="clean">Clean Names</option>
+    </select>
 
-h1 {
-    font-size: 42px;
-    color: #ff6b81;
-    margin-bottom: 30px;
-    font-weight: 600;
-}
+    <br><br>
+    
+    <input type="checkbox" id="prefix-checkbox">
+    <label for="prefix-checkbox">Include Prefix</label>
 
-/* Labels and Select Styles */
-label {
-    font-size: 18px;
-    color: #fff;
-    font-weight: 500;
-    display: block;
-    margin-bottom: 10px;
-}
+    <input type="checkbox" id="suffix-checkbox">
+    <label for="suffix-checkbox">Include Suffix</label>
 
-select {
-    font-size: 16px;
-    padding: 8px 12px;
-    border: 2px solid #ff6b81;
-    border-radius: 8px;
-    background-color: #ff6b81;
-    color: #fff; /* Change text color inside the dropdown */
-    margin: 10px;
-    cursor: pointer;
-    transition: border-color 0.3s ease;
-    appearance: none; /* Remove default styling */
-}
+    <br><br>
 
-select:focus {
-    border-color: #ff9aa2;
-    outline: none;
-}
+    <button id="generate-btn">Generate Cute Username</button>
 
-/* Specific styling for options to ensure color and background are consistent */
-select option {
-    background-color: #ff6b81; /* Background color for options */
-    color: #fff; /* Text color for options */
-}
+    <!-- This div will be clickable to copy the username -->
+    <div id="result" style="cursor: pointer;"></div>
 
-/* Button Styling */
-button {
-    background-color: #ff6b81;
-    color: #fff;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 12px;
-    font-size: 20px;
-    cursor: pointer;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-button:hover {
-    background-color: #ff9aa2;
-    transform: scale(1.05);
-}
-
-button:active {
-    transform: scale(0.98);
-}
-
-/* Result Box Styling */
-#result {
-    margin-top: 30px;
-    font-size: 28px;
-    color: #ff6b81;
-    background-color: #fff;
-    border: 2px solid #ff6b81;
-    padding: 16px;
-    border-radius: 12px;
-    display: inline-block;
-    min-width: 220px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Error Styling */
-#result.error {
-    color: #ff4d4d;
-    border-color: #ff4d4d;
-    background-color: #ffe6e6;
-}
-
-/* Adding Cute Elements */
-body::before {
-    content: "";
-    background: url('https://i.pinimg.com/originals/c3/14/36/c314367e6bc2c74fc5d4c5f8c3aaf9be.png');
-    background-size: cover;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    opacity: 0.1;
-    z-index: -1;
-}
-
-/* Extra Styling for checkboxes */
-.checkbox-label {
-    margin: 0 10px;
-    font-size: 16px;
-    color: #fff;
-}
-
-input[type="checkbox"] {
-    transform: scale(1.2);
-    margin-right: 6px;
-}
+    <script src="cuteNames.js"></script>
+</body>
+</html>
