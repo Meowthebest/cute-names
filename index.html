@@ -24,42 +24,36 @@
             font-size: 24px;
             color: #ff69b4;
         }
-        #info {
-            font-size: 14px;
-            color: #333;
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
     <h1>Cute Username Generator</h1>
-
+    
     <label for="category-select">Choose a category:</label>
     <select id="category-select">
         <option value="fruit">Fruit</option>
         <option value="cat">Cat</option>
         <option value="anime">Anime</option>
         <option value="league">League of Legends</option>
-        <option value="genshin">Genshin Impact</option>
+        <option value="genshin">Genshin</option>
         <option value="sanrio">Sanrio</option>
         <option value="miscellaneous">Miscellaneous</option>
-        <option value="clean">Clean Names (No Prefix/Suffix)</option>
+        <option value="clean">Clean Names</option>
     </select>
 
     <br><br>
+    
+    <input type="checkbox" id="prefix-checkbox">
+    <label for="prefix-checkbox">Include Prefix</label>
 
-    <input type="checkbox" id="prefix-checkbox"> Include Prefix
-    <input type="checkbox" id="suffix-checkbox"> Include Suffix
+    <input type="checkbox" id="suffix-checkbox">
+    <label for="suffix-checkbox">Include Suffix</label>
 
     <br><br>
 
     <button id="generate-btn">Generate Cute Username</button>
 
     <div id="result"></div>
-
-    <div id="info">
-        <p>Note: Each name can optionally include prefixes and suffixes unless the "Clean Names" category is selected.</p>
-    </div>
 
     <script src="cuteNames.js"></script>
 </body>
