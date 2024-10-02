@@ -1,97 +1,79 @@
 /* General Styles */
 body {
-    font-family: 'Press Start 2P', cursive; /* Retro pixelated font */
-    background: linear-gradient(135deg, #f06d6d, #fcbf49, #f9ed69, #3fc1c9); /* Vibrant retro gradient */
-    background-size: 400% 400%;
-    animation: gradientBG 10s ease infinite; /* Faster moving gradient for retro vibes */
+    font-family: 'Poppins', sans-serif;
+    background-color: #1c1c1e; /* Dark background */
+    color: #fff;
     text-align: center;
     margin: 0;
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #fff;
 }
 
-/* Smooth moving background */
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
+/* Header */
 h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: bold;
-    text-shadow: 3px 3px 0 #000000, 5px 5px 0 #ffcccb; /* Retro 3D shadow effect */
+    color: #fff;
     margin-bottom: 30px;
 }
 
-/* Generated Name Result */
+/* Result Box */
 #result {
     font-size: 2.5rem;
     font-weight: bold;
-    color: #ffdf64;
+    color: #00aaff; /* Blue accent for result */
     margin-top: 25px;
     padding: 15px;
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 4px solid #ffcccb;
-    border-radius: 12px;
-    text-shadow: 2px 2px 0 #000000;
+    background-color: #2b2b2b;
+    border-radius: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-    width: 100%;
-    max-width: 500px;
     cursor: pointer; /* Make clickable for auto-copy */
 }
 
 /* Button Styles */
 button {
-    background-color: #3fc1c9;
-    border: 4px solid #fff;
-    padding: 15px 40px;
-    border-radius: 15px;
-    font-size: 20px;
-    font-family: 'Press Start 2P', cursive;
-    color: #000;
+    background-color: #00aaff; /* Battle.net blue */
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #fff;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0px 6px 0px #ffdf64;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-    background-color: #ffdf64;
-    color: #000;
-    transform: translateY(-8px);
-    box-shadow: 0px 8px 0px #f06d6d;
+    background-color: #0077cc;
+    transform: translateY(-3px);
 }
 
-/* Select Styles */
-select, label {
+/* Select & Checkbox Styles */
+select, label, input[type="checkbox"] {
     font-size: 1.2rem;
-    color: #000;
-    background-color: #3fc1c9;
-    border: 3px solid #fff;
-    padding: 12px;
-    border-radius: 10px;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
-    margin: 15px;
+    color: #fff;
+    background-color: #2b2b2b;
+    border: 1px solid #4d4d4d;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px;
     transition: all 0.3s ease;
-    font-family: 'Press Start 2P', cursive;
+    width: 250px; /* Make it wider for Battle.net look */
 }
 
 select:hover, input[type="checkbox"]:hover {
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    border-color: #00aaff;
 }
 
-/* Checkbox Styling */
-input[type="checkbox"] {
-    margin: 10px;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    accent-color: #3fc1c9;
+/* Input and label alignment */
+label {
+    margin-right: 10px;
 }
 
 /* Adjustments for Mobile */
@@ -101,12 +83,13 @@ input[type="checkbox"] {
     }
 
     button {
-        font-size: 18px;
+        font-size: 16px;
         padding: 12px 25px;
     }
 
     select, label {
         font-size: 1rem;
+        width: 200px;
     }
 
     #result {
