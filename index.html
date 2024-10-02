@@ -24,41 +24,44 @@
             font-size: 24px;
             color: #ff69b4;
         }
-        .filters {
-            margin: 20px 0;
-        }
-        .filter-label {
-            margin-right: 10px;
+        #info {
+            font-size: 14px;
+            color: #333;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <h1>Cute Username Generator</h1>
 
-    <div class="filters">
-        <label for="category-select" class="filter-label">Choose a category:</label>
-        <select id="category-select">
-            <option value="fruit">Fruit</option>
-            <option value="cat">Cat</option>
-            <option value="anime">Anime</option>
-            <option value="league">League of Legends</option>
-            <option value="genshin">Genshin Impact</option>
-            <option value="sanrio">Sanrio</option>
-            <option value="miscellaneous">Miscellaneous</option>
-        </select>
-    </div>
+    <label for="category-select">Choose a category:</label>
+    <select id="category-select">
+        <option value="fruit">Fruit</option>
+        <option value="cat">Cat</option>
+        <option value="anime">Anime</option>
+        <option value="league">League of Legends</option>
+        <option value="genshin">Genshin Impact</option>
+        <option value="sanrio">Sanrio</option>
+        <option value="miscellaneous">Miscellaneous</option>
+    </select>
 
-    <div class="filters">
-        <label class="filter-label"><input type="checkbox" id="prefix-checkbox"> Include Prefix</label>
-        <label class="filter-label"><input type="checkbox" id="suffix-checkbox"> Include Suffix</label>
-        <label class="filter-label"><input type="checkbox" id="number-checkbox"> Include Numbers</label>
-    </div>
+    <br><br>
+
+    <input type="checkbox" id="prefix-checkbox"> Include Prefix
+    <input type="checkbox" id="suffix-checkbox"> Include Suffix
+    <input type="checkbox" id="clean-checkbox"> Generate Clean Name (no prefix/suffix)
+
+    <br><br>
 
     <button id="generate-btn">Generate Cute Username</button>
+
     <div id="result"></div>
 
-    <!-- Link the JavaScript files -->
-    <script src="generator.js"></script>
+    <!-- Info section -->
+    <div id="info">
+        <p>Note: Prefixes and suffixes from various themes may be included when generating names. If you select the "clean" option, no prefix or suffix will be added to the generated name.</p>
+    </div>
+
     <script src="cuteNames.js"></script>
 </body>
 </html>
