@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cute & Unique Username Generator</title>
+    <title>Advanced Username Generator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -30,17 +30,37 @@
             font-size: 24px;
             color: #66ccff;
         }
+        .filters {
+            margin: 20px 0;
+        }
+        .filter-label {
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
-    <h1>Cute & Unique Username Generator</h1>
-    
-    <button id="generate-btn">Generate Cute Username</button>
+    <h1>Advanced Username Generator</h1>
+
+    <div class="filters">
+        <label for="theme-select" class="filter-label">Choose a theme:</label>
+        <select id="theme-select">
+            <option value="cute">Cute</option>
+            <option value="mythic">Mythic</option>
+        </select>
+    </div>
+
+    <div class="filters">
+        <label class="filter-label"><input type="checkbox" id="prefix-checkbox"> Include Prefix</label>
+        <label class="filter-label"><input type="checkbox" id="suffix-checkbox"> Include Suffix</label>
+        <label class="filter-label"><input type="checkbox" id="number-checkbox"> Include Numbers</label>
+    </div>
+
+    <button id="generate-btn">Generate Username</button>
     <div id="result"></div>
-    
+
     <button id="generate-unique-btn">Generate Unique Username</button>
     <div id="uniqueResult"></div>
 
-    <script src="Cute.js"></script>
+    <script src="advanced.js"></script>
 </body>
 </html>
