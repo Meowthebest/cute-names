@@ -1,106 +1,116 @@
 /* General Styles */
 body {
-    font-family: 'Poppins', sans-serif; /* Modern font */
-    background: linear-gradient(135deg, #f8b195, #f67280, #c06c84, #6c5b7b); /* Gradient background */
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite; /* Moving gradient effect */
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
     text-align: center;
     margin: 0;
     padding: 0;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #fff;
-}
-
-/* Smooth moving background */
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    min-height: 100vh;
 }
 
 h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
+    font-size: 42px;
+    color: #ff6b81;
+    margin-bottom: 30px;
+    font-weight: 600;
 }
 
-#result {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #ffcccb;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-}
-
-/* Button Styles */
-button {
-    background-color: #ffcccb;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 25px;
+/* Labels and Select Styles */
+label {
     font-size: 18px;
-    color: #fff;
+    color: #333;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 10px;
+}
+
+select, input[type="checkbox"] {
+    font-size: 16px;
+    padding: 8px 12px;
+    border: 2px solid #ff6b81;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    margin: 10px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.3s ease;
+}
+
+select:focus, input[type="checkbox"]:focus {
+    border-color: #ff9aa2;
+    outline: none;
+}
+
+/* Button Styling */
+button {
+    background-color: #ff6b81;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-    background-color: #f67280;
-    transform: translateY(-5px);
+    background-color: #ff9aa2;
+    transform: scale(1.05);
 }
 
-/* Select Styles */
-select, label {
-    font-size: 1.2rem;
-    color: #fff;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: none;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 10px;
-    transition: all 0.3s ease;
+button:active {
+    transform: scale(0.98);
 }
 
-select:hover, input[type="checkbox"]:hover {
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+/* Result Box Styling */
+#result {
+    margin-top: 30px;
+    font-size: 28px;
+    color: #ff6b81;
+    background-color: #fff;
+    border: 2px solid #ff6b81;
+    padding: 16px;
+    border-radius: 12px;
+    display: inline-block;
+    min-width: 220px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Checkbox Styling */
+/* Error Styling */
+#result.error {
+    color: #ff4d4d;
+    border-color: #ff4d4d;
+    background-color: #ffe6e6;
+}
+
+/* Adding Cute Elements */
+body::before {
+    content: "";
+    background: url('https://i.pinimg.com/originals/c3/14/36/c314367e6bc2c74fc5d4c5f8c3aaf9be.png');
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.1;
+    z-index: -1;
+}
+
+/* Extra Styling for checkboxes */
+.checkbox-label {
+    margin: 0 10px;
+    font-size: 16px;
+    color: #333;
+}
+
 input[type="checkbox"] {
-    margin: 10px;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    accent-color: #ffcccb;
-}
-
-/* Adjustments for Mobile */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    button {
-        font-size: 16px;
-        padding: 12px 25px;
-    }
-
-    select, label {
-        font-size: 1rem;
-    }
-
-    #result {
-        font-size: 1.5rem;
-    }
+    transform: scale(1.2);
+    margin-right: 6px;
 }
