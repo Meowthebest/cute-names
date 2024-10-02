@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Username Generator</title>
+    <title>Cute Username Generator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,7 +18,6 @@
             border-radius: 10px;
             font-size: 18px;
             cursor: pointer;
-            margin: 10px;
         }
         #result {
             margin-top: 20px;
@@ -34,15 +33,18 @@
     </style>
 </head>
 <body>
-    <h1>Advanced Username Generator</h1>
+    <h1>Cute Username Generator</h1>
 
     <div class="filters">
         <label for="category-select" class="filter-label">Choose a category:</label>
         <select id="category-select">
-            <option value="fantasy">Fantasy</option>
-            <option value="tech">Tech</option>
-            <option value="mystical">Mystical</option>
-            <option value="none">None (Random)</option>
+            <option value="fruit">Fruit</option>
+            <option value="cat">Cat</option>
+            <option value="anime">Anime</option>
+            <option value="league">League of Legends</option>
+            <option value="genshin">Genshin Impact</option>
+            <option value="sanrio">Sanrio</option>
+            <option value="miscellaneous">Miscellaneous</option>
         </select>
     </div>
 
@@ -52,12 +54,11 @@
         <label class="filter-label"><input type="checkbox" id="number-checkbox"> Include Numbers</label>
     </div>
 
-    <button id="generate-btn">Generate Username</button>
+    <button id="generate-btn">Generate Cute Username</button>
     <div id="result"></div>
 
-    <!-- Link the JavaScript file -->
+    <!-- Link the JavaScript files -->
     <script src="generator.js"></script>
     <script src="cuteNames.js"></script>
-    
 </body>
 </html>
