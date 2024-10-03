@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cute Username Generator</title>
-    <!-- Link to the external style.css file -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,11 +23,6 @@
 
     <br><br>
 
-    <label for="number-select">How many names? (1-200):</label>
-    <input type="number" id="number-select" min="1" max="200" value="1">
-
-    <br><br>
-
     <input type="checkbox" id="prefix-checkbox">
     <label for="prefix-checkbox">Include Prefix</label>
 
@@ -37,11 +31,16 @@
 
     <br><br>
 
-    <button id="generate-btn">Generate Cute Username</button>
+    <!-- Input for the number of names to generate -->
+    <label for="name-count">How many names? (1-200): </label>
+    <input type="number" id="name-count" min="1" max="200" value="1">
+
+    <br><br>
+
+    <button id="generate-btn">Generate Cute Username(s)</button>
 
     <div id="result"></div>
 
-    <!-- Link to your cuteNames.js file -->
     <script src="cuteNames.js"></script>
 </body>
 </html>
