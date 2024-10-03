@@ -137,15 +137,7 @@ function generateCuteName(theme, cleanOnly = false) {
     return baseName;
 }
 
-// Function to copy the generated name to the clipboard
-function copyToClipboard(text) {
-    const tempInput = document.createElement("input");
-    tempInput.value = text;
-    document.body.appendChild(tempInput);
-    tempInput.select();
-    document.execCommand("copy");
-    document.body.removeChild(tempInput);
-    alert(`Copied: ${text}`);
+    return baseName;
 }
 
 // Event listener for generating usernames
@@ -159,8 +151,8 @@ document.querySelector('#generate-btn').addEventListener('click', () => {
         generatedNames.push(generateCuteName(theme, cleanOnly));
     }
 
-    // Display generated names in result, separated by commas or new lines
-    document.querySelector('#result').textContent = generatedNames.join(', ');
+    // Display generated names on separate lines
+    document.querySelector('#result').innerHTML = generatedNames.join('<br>');
 });
 
 // Event listener for copying the generated usernames when clicked
