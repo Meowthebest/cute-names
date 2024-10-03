@@ -1,42 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cute Username Generator</title>
-    <!-- Link to the external style.css file -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Cute Username Generator</h1>
+// List of cute names categorized by theme
+const cuteNames = {
+    fruit: [ /* Your existing names */ ],
+    cat: [ /* Your existing names */ ],
+    anime: [ /* Your existing names */ ],
+    league: [ /* Your existing names */ ],
+    genshin: [ /* Your existing names */ ],
+    sanrio: [ /* Your existing names */ ],
+    miscellaneous: [ /* Your existing names */ ],
+    clean: [ /* Your expanded clean names */ ]
+};
+
+// Prefix and Suffix list for mixing
+const prefixes = ["Sugar", "Fuzzy", "Moon", "Star", "Cuddle", "Mochi", "Dream", "Fluffy", "Glitter", "Panda"];
+const suffixes = ["Bunny", "Paws", "Tail", "Whiskers", "Pop", "Sprout", "Berry", "Mew", "Shine", "Mochi"];
+
+// Recently generated names history to avoid repetitions
+const recentNames = new Set();
+const MAX_HISTORY = 5;  // Maximum recent names to remember
+
+// Function to get a random element from an array, excluding recent names
+function getRandomElement(arr) {
+    let filteredArr = arr.filter(name => !recentNames.has(name));
     
-    <label for="category-select">Choose a category:</label>
-    <select id="category-select">
-        <option value="fruit">Fruit</option>
-        <option value="cat">Cat</option>
-        <option value="anime">Anime</option>
-        <option value="league">League of Legends</option>
-        <option value="genshin">Genshin</option>
-        <option value="sanrio">Sanrio</option>
-        <option value="miscellaneous">Miscellaneous</option>
-        <option value="clean">Clean Names</option>
-    </select>
+    // If filtered array is empty, reset the recent names
+    if (filteredArr.length === 0) {
+        recentNames.clear();
+        filteredArr = arr;
+    }
 
-    <br><br>
+    const randomElement = filteredArr[Math.floor(Math.random() * filteredArr.length)];
     
-    <input type="checkbox" id="prefix-checkbox">
-    <label for="prefix-checkbox">Include Prefix</label>
+    // Add the new name to the recent names and ensure we don't exceed max history
+    recentNames.add(randomElement);
+    if (recentNames.size > MAX_HISTORY) {
+        recentNames.delete([...recentNames][0]);  // Remove the oldest entry
+    }
+    
+    return randomElement;
+}
 
-    <input type="checkbox" id="suffix-checkbox">
-    <label for="suffix-checkbox">Include Suffix</label>
+// Function to generate a cute username based on a selected category
+function generateCuteName(theme, cleanOnly = false) {
+    let baseName = getRandomElement(cuteNames[theme]);
 
-    <br><br>
+    // Generate prefix and suffix only if not clean
+    if (!cleanOnly && theme !== 'clean') {
+        const includePrefix = document.querySelector('#prefix-checkbox').checked;
+        const includeSuffix = document.querySelector('#suffix-checkbox').checked;
 
-    <button id="generate-btn">Generate Cute Username</button>
+        if (includePrefix) {
+            baseName = getRandomElement(prefixes) + baseName;
+        }
+        if (includeSuffix) {
+            baseName += getRandomElement(suffixes);
+        }
+    }
 
-    <div id="result"></div>
+    return baseName;
+}
 
-    <!-- Link to your cuteNames.js file -->
-    <script src="cuteNames.js"></script>
-</body>
-</html>
+// Event listener for generating usernames
+document.querySelector('#generate-btn').addEventListener('click', () => {
+    const theme = document.querySelector('#category-select').value;
+    const cleanOnly = theme === 'clean'; // Automatically set clean if clean theme is chosen
+    const numberOfNames = parseInt(document.querySelector('#number-select').value, 10);
+
+    let generatedNames = '';
+
+    for (let i = 0; i < numberOfNames; i++) {
+        const generatedName = generateCuteName(theme, cleanOnly);
+        generatedNames += `<p>${generatedName}</p>`;
+    }
+    
+    document.querySelector('#result').innerHTML = generatedNames;
+});
