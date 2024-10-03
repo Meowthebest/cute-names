@@ -148,27 +148,31 @@ function copyToClipboard(text) {
     alert(`Copied: ${text}`);
 }
 
+// Function to create a clickable box for each username
+function createNameBox(name) {
+    const nameBox = document.createElement('div');
+    nameBox.textContent = name;
+    nameBox.className = 'name-box';
+    nameBox.addEventListener('click', () => copyToClipboard(name));
+    return nameBox;
+}
+
 // Event listener for generating usernames
 document.querySelector('#generate-btn').addEventListener('click', () => {
     const theme = document.querySelector('#category-select').value;
     const cleanOnly = theme === 'clean'; // Automatically set clean if clean theme is chosen
     const count = parseInt(document.querySelector('#name-count').value);  // Get the number of names to generate
-    let generatedNames = [];
+    const resultContainer = document.querySelector('#result');
+    
+    // Clear any previous generated names
+    resultContainer.innerHTML = '';
 
-    // Generate the specified number of names
+    // Generate the specified number of names and create boxes
     for (let i = 0; i < count; i++) {
-        generatedNames.push(generateCuteName(theme, cleanOnly));
-    }
-
-    // Display generated names on separate lines
-    document.querySelector('#result').innerHTML = generatedNames.join('<br>');
-});
-
-// Event listener for copying the generated usernames when clicked
-document.querySelector('#result').addEventListener('click', function() {
-    const generatedNames = document.querySelector('#result').innerText;
-    if (generatedNames) {
-        copyToClipboard(generatedNames);
+        const generatedName = generateCuteName(theme, cleanOnly);
+        const nameBox = createNameBox(generatedName);
+        resultContainer.appendChild(nameBox);
     }
 });
+
 
