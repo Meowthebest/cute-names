@@ -93,8 +93,7 @@ const suffixes = [
 ];
 
 // Recently generated names history to avoid repetitions
-const recentNames = new Set();
-const MAX_HISTORY = 5;  // Maximum recent names to remember
+let recentNames = new Set();
 
 // Function to get a random element from an array, excluding recent names
 function getRandomElement(arr) {
@@ -108,11 +107,8 @@ function getRandomElement(arr) {
 
     const randomElement = filteredArr[Math.floor(Math.random() * filteredArr.length)];
     
-    // Add the new name to the recent names and ensure we don't exceed max history
+    // Add the new name to the recent names set
     recentNames.add(randomElement);
-    if (recentNames.size > MAX_HISTORY) {
-        recentNames.delete([...recentNames][0]);  // Remove the oldest entry
-    }
     
     return randomElement;
 }
@@ -137,6 +133,18 @@ function generateCuteName(theme, cleanOnly = false) {
     return baseName;
 }
 
+// Function to generate multiple cute names at once
+function generateMultipleCuteNames(theme, cleanOnly = false, count = 1) {
+    recentNames.clear();  // Clear the recent names set before generating new names
+    const generatedNames = [];
+    
+    for (let i = 0; i < count; i++) {
+        generatedNames.push(generateCuteName(theme, cleanOnly));
+    }
+
+    return generatedNames;
+}
+
 // Function to copy the generated name to the clipboard
 function copyToClipboard(text) {
     const tempInput = document.createElement("input");
@@ -148,31 +156,24 @@ function copyToClipboard(text) {
     alert(`Copied: ${text}`);
 }
 
-// Function to create a clickable box for each username
-function createNameBox(name) {
-    const nameBox = document.createElement('div');
-    nameBox.textContent = name;
-    nameBox.className = 'name-box';
-    nameBox.addEventListener('click', () => copyToClipboard(name));
-    return nameBox;
-}
-
-// Event listener for generating usernames
+// Event listener for generating username
 document.querySelector('#generate-btn').addEventListener('click', () => {
     const theme = document.querySelector('#category-select').value;
     const cleanOnly = theme === 'clean'; // Automatically set clean if clean theme is chosen
-    const count = parseInt(document.querySelector('#name-count').value);  // Get the number of names to generate
+    const count = parseInt(document.querySelector('#count-select').value);  // Get the number of names to generate
+
+    const generatedNames = generateMultipleCuteNames(theme, cleanOnly, count);
+
+    // Clear and display each name in a separate box
     const resultContainer = document.querySelector('#result');
-    
-    // Clear any previous generated names
-    resultContainer.innerHTML = '';
+    resultContainer.innerHTML = '';  // Clear previous results
 
-    // Generate the specified number of names and create boxes
-    for (let i = 0; i < count; i++) {
-        const generatedName = generateCuteName(theme, cleanOnly);
-        const nameBox = createNameBox(generatedName);
+    generatedNames.forEach(name => {
+        const nameBox = document.createElement('div');
+        nameBox.classList.add('name-box');
+        nameBox.textContent = name;
+        nameBox.addEventListener('click', () => copyToClipboard(name));  // Add copy functionality
         resultContainer.appendChild(nameBox);
-    }
+    });
 });
-
 
