@@ -92,57 +92,51 @@ const suffixes = [
     "Bunny", "Paws", "Tail", "Whiskers", "Pop", "Sprout", "Berry", "Mew", "Shine", "Mochi"
 ];
 
-// Recently generated names history to avoid repetitions
-let recentNames = new Set();
+// Recently generated names history to avoid duplicates during each cycle
+let generatedNamesSet = new Set();
 
-// Function to get a random element from an array, excluding recent names
+// Function to get a random element from an array, excluding generated names
 function getRandomElement(arr) {
-    let filteredArr = arr.filter(name => !recentNames.has(name));
+    let availableArr = arr.filter(name => !generatedNamesSet.has(name));
     
-    // If filtered array is empty, reset the recent names
-    if (filteredArr.length === 0) {
-        recentNames.clear();
-        filteredArr = arr;
+    // If no more unique names are available, reset the set to allow repetition
+    if (availableArr.length === 0) {
+        generatedNamesSet.clear();
+        availableArr = arr;
     }
 
-    const randomElement = filteredArr[Math.floor(Math.random() * filteredArr.length)];
+    const randomElement = availableArr[Math.floor(Math.random() * availableArr.length)];
     
-    // Add the new name to the recent names set
-    recentNames.add(randomElement);
+    generatedNamesSet.add(randomElement);  // Add the name to the set to avoid duplicates
     
     return randomElement;
 }
 
-// Function to generate a cute username based on a selected category
-function generateCuteName(theme, cleanOnly = false) {
-    let baseName = getRandomElement(cuteNames[theme]);
+// Function to generate multiple usernames based on a selected category
+function generateCuteNames(theme, count, cleanOnly = false) {
+    generatedNamesSet.clear();  // Clear the set for each new generation cycle
+    const namesArray = [];
 
-    // Generate prefix and suffix only if not clean
-    if (!cleanOnly && theme !== 'clean') {
-        const includePrefix = document.querySelector('#prefix-checkbox').checked;
-        const includeSuffix = document.querySelector('#suffix-checkbox').checked;
-
-        if (includePrefix) {
-            baseName = getRandomElement(prefixes) + baseName;
-        }
-        if (includeSuffix) {
-            baseName += getRandomElement(suffixes);
-        }
-    }
-
-    return baseName;
-}
-
-// Function to generate multiple cute names at once
-function generateMultipleCuteNames(theme, cleanOnly = false, count = 1) {
-    recentNames.clear();  // Clear the recent names set before generating new names
-    const generatedNames = [];
-    
     for (let i = 0; i < count; i++) {
-        generatedNames.push(generateCuteName(theme, cleanOnly));
+        let baseName = getRandomElement(cuteNames[theme]);
+
+        // Generate prefix and suffix only if not clean
+        if (!cleanOnly && theme !== 'clean') {
+            const includePrefix = document.querySelector('#prefix-checkbox').checked;
+            const includeSuffix = document.querySelector('#suffix-checkbox').checked;
+
+            if (includePrefix) {
+                baseName = getRandomElement(prefixes) + baseName;
+            }
+            if (includeSuffix) {
+                baseName += getRandomElement(suffixes);
+            }
+        }
+
+        namesArray.push(baseName);
     }
 
-    return generatedNames;
+    return namesArray;
 }
 
 // Function to copy the generated name to the clipboard
@@ -156,23 +150,28 @@ function copyToClipboard(text) {
     alert(`Copied: ${text}`);
 }
 
-// Event listener for generating username
+// Event listener for generating usernames
 document.querySelector('#generate-btn').addEventListener('click', () => {
     const theme = document.querySelector('#category-select').value;
-    const cleanOnly = theme === 'clean'; // Automatically set clean if clean theme is chosen
     const count = parseInt(document.querySelector('#count-select').value);  // Get the number of names to generate
+    const cleanOnly = theme === 'clean';  // Automatically set clean if clean theme is chosen
 
-    const generatedNames = generateMultipleCuteNames(theme, cleanOnly, count);
-
-    // Clear and display each name in a separate box
+    const generatedNames = generateCuteNames(theme, count, cleanOnly);
+    
     const resultContainer = document.querySelector('#result');
     resultContainer.innerHTML = '';  // Clear previous results
 
+    // Display each name in a separate clickable box
     generatedNames.forEach(name => {
         const nameBox = document.createElement('div');
         nameBox.classList.add('name-box');
         nameBox.textContent = name;
-        nameBox.addEventListener('click', () => copyToClipboard(name));  // Add copy functionality
+
+        // Add click-to-copy functionality
+        nameBox.addEventListener('click', function() {
+            copyToClipboard(name);
+        });
+
         resultContainer.appendChild(nameBox);
     });
 });
