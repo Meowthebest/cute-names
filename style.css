@@ -3,10 +3,9 @@
 
 /* General Styles */
 body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #f8b195, #f67280, #c06c84, #6c5b7b);
+    font-family: 'Blizzard', sans-serif; /* Use Blizzard-inspired font */
+    background: linear-gradient(135deg, #2c3e50, #34495e); /* Darker, sleek background */
     background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
     text-align: center;
     margin: 0;
     padding: 0;
@@ -18,97 +17,93 @@ body {
     color: #fff;
 }
 
-/* Smooth moving background */
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
 h1 {
     font-size: 3rem;
     font-weight: bold;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    color: #66c0f4; /* Battle.net blue */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
     margin-bottom: 20px;
 }
 
+/* Result Container */
 #result {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px; /* Space between the name boxes */
+    gap: 15px;
     justify-content: center;
     margin-top: 20px;
     max-width: 80%; /* Limit the width */
-    overflow-y: auto; /* Add scrolling behavior for overflow */
-    max-height: 60vh; /* Limit the height of the result container */
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.1); /* Background to indicate boundaries */
-    border-radius: 10px;
+    overflow-y: auto; /* Scrolling when too many names */
+    max-height: 60vh;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05); /* Transparent dark background */
+    border-radius: 15px;
+    border: 1px solid #66c0f4; /* Battle.net blue border */
 }
 
-/* Styles for generated name boxes */
+/* Name box styles */
 .name-box {
-    padding: 10px;
-    margin: 5px;
-    background-color: #ffcccb;
+    padding: 10px 15px;
+    background-color: #1f2a38; /* Darker box background */
     color: #fff;
+    border: 1px solid #66c0f4;
     border-radius: 10px;
     cursor: pointer;
     display: inline-block;
+    min-width: 120px;
+    max-width: 150px;
+    word-wrap: break-word; /* Wrap long names */
     text-align: center;
-    transition: background-color 0.3s ease;
-    min-width: 90px;
-    max-width: 150px; /* Limit the size of the box */
-    word-wrap: break-word; /* Ensure long names break properly */
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .name-box:hover {
-    background-color: #f67280;
+    background-color: #66c0f4; /* Blue hover effect */
     transform: scale(1.05);
 }
 
 /* Button Styles */
 button {
-    background-color: #ffcccb;
+    background-color: #66c0f4;
     border: none;
     padding: 15px 30px;
     border-radius: 25px;
     font-size: 18px;
-    color: #fff;
+    color: #1f2a38; /* Dark color for contrast */
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-    background-color: #f67280;
+    background-color: #5dade2;
     transform: translateY(-5px);
 }
 
-/* Select Styles */
+/* Select and Label Styles */
 select, label {
     font-size: 1.2rem;
-    color: #fff;
+    color: #66c0f4;
     background-color: rgba(255, 255, 255, 0.1);
     border: none;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     margin: 10px;
     transition: all 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 select:hover, input[type="checkbox"]:hover {
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Checkbox Styling */
+/* Checkbox Styles */
 input[type="checkbox"] {
     margin: 10px;
     width: 20px;
     height: 20px;
     cursor: pointer;
-    accent-color: #ffcccb;
+    accent-color: #66c0f4; /* Blue accent */
 }
 
 /* Adjustments for Mobile */
@@ -128,10 +123,10 @@ input[type="checkbox"] {
 
     #result {
         font-size: 1.5rem;
-        max-width: 95%; /* Make sure result box fits mobile screens */
+        max-width: 95%; /* Fit for mobile screens */
     }
 
     .name-box {
-        min-width: 80px;
+        min-width: 100px;
     }
 }
