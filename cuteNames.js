@@ -148,19 +148,25 @@ function copyToClipboard(text) {
     alert(`Copied: ${text}`);
 }
 
-// Event listener for generating username
+// Event listener for generating usernames
 document.querySelector('#generate-btn').addEventListener('click', () => {
     const theme = document.querySelector('#category-select').value;
     const cleanOnly = theme === 'clean'; // Automatically set clean if clean theme is chosen
-    const generatedName = generateCuteName(theme, cleanOnly);
-    
-    document.querySelector('#result').textContent = generatedName;
+    const count = parseInt(document.querySelector('#name-count').value);  // Get the number of names to generate
+    let generatedNames = [];
+
+    for (let i = 0; i < count; i++) {
+        generatedNames.push(generateCuteName(theme, cleanOnly));
+    }
+
+    // Display generated names in result, separated by commas or new lines
+    document.querySelector('#result').textContent = generatedNames.join(', ');
 });
 
-// Event listener for copying the generated username when clicked
+// Event listener for copying the generated usernames when clicked
 document.querySelector('#result').addEventListener('click', function() {
-    const generatedName = document.querySelector('#result').textContent;
-    if (generatedName) {
-        copyToClipboard(generatedName);
+    const generatedNames = document.querySelector('#result').textContent;
+    if (generatedNames) {
+        copyToClipboard(generatedNames);
     }
 });
