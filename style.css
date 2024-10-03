@@ -3,9 +3,10 @@
 
 /* General Styles */
 body {
-    font-family: 'Inter', sans-serif; /* Battle.net similar font */
-    background-color: #1c1c1e; /* Dark background */
-    color: #fff; /* White text */
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f8b195, #f67280, #c06c84, #6c5b7b);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
     text-align: center;
     margin: 0;
     padding: 0;
@@ -14,23 +15,64 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: #fff;
 }
 
-/* Header */
+/* Smooth moving background */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 h1 {
     font-size: 3rem;
     font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+#result {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between the name boxes */
+    justify-content: center;
+    margin-top: 20px;
+    max-width: 80%; /* Limit the width */
+    overflow-y: auto; /* Add scrolling behavior for overflow */
+    max-height: 60vh; /* Limit the height of the result container */
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1); /* Background to indicate boundaries */
+    border-radius: 10px;
+}
+
+/* Styles for generated name boxes */
+.name-box {
+    padding: 10px;
+    margin: 5px;
+    background-color: #ffcccb;
     color: #fff;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    min-width: 90px;
+    max-width: 150px; /* Limit the size of the box */
+    word-wrap: break-word; /* Ensure long names break properly */
+}
+
+.name-box:hover {
+    background-color: #f67280;
+    transform: scale(1.05);
 }
 
 /* Button Styles */
 button {
-    background-color: #007bff; /* Battle.net style blue button */
+    background-color: #ffcccb;
     border: none;
     padding: 15px 30px;
-    border-radius: 5px;
+    border-radius: 25px;
     font-size: 18px;
     color: #fff;
     cursor: pointer;
@@ -39,19 +81,19 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-    transform: translateY(-3px);
+    background-color: #f67280;
+    transform: translateY(-5px);
 }
 
-/* Select and Label Styles */
+/* Select Styles */
 select, label {
     font-size: 1.2rem;
     color: #fff;
-    background-color: #2c2c2e;
+    background-color: rgba(255, 255, 255, 0.1);
     border: none;
     padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     margin: 10px;
     transition: all 0.3s ease;
 }
@@ -60,38 +102,13 @@ select:hover, input[type="checkbox"]:hover {
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-#category-select {
-    color: #fff; /* White text inside dropdown */
-    background-color: #2c2c2e; /* Dark background for dropdown */
-}
-
 /* Checkbox Styling */
 input[type="checkbox"] {
     margin: 10px;
     width: 20px;
     height: 20px;
     cursor: pointer;
-    accent-color: #007bff; /* Checkbox color matching button */
-}
-
-/* Result Box */
-#result {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #ffcccb;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    cursor: pointer; /* So users know it's clickable */
-}
-
-/* Hover effect for the result box */
-#result:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
+    accent-color: #ffcccb;
 }
 
 /* Adjustments for Mobile */
@@ -111,5 +128,10 @@ input[type="checkbox"] {
 
     #result {
         font-size: 1.5rem;
+        max-width: 95%; /* Make sure result box fits mobile screens */
+    }
+
+    .name-box {
+        min-width: 80px;
     }
 }
